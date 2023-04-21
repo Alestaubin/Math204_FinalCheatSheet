@@ -123,7 +123,7 @@ Compare $T_{obs}$ with the student distribution $t_{n-2, \alpha/2}$ to get RR.
 \item $r = S_{XY} /\sqrt{S_{XX}S_{YY}}$ is an estimator for $\rho$ (the true pop. correlation).
 \item $(1-\alpha)100\%$ confidence interval for $\rho$: 
 transform $r$ to $z=0.5 \ln(\frac{1+r}{1-r})$. Build an interval:$z \pm \frac{z_{\alpha/2}}{\sqrt{n-3}}=(c_l, c_u)$, where $z_{\alpha/2}$ is from the standard Normal table. Then, the interval is
-        $$ \left( \frac{e^{2c_L}-1}{e^{2c_L}+1},\frac{e^{2c_U}-1}{e^{2c_U}+1} \right)$$
+        $\left( \frac{e^{2c_L}-1}{e^{2c_L}+1},\frac{e^{2c_U}-1}{e^{2c_U}+1} \right)$
 \item Coefficient of determination: $R^2 = 1 - SSE/S_{YY}$
 \end{enumerate}
 \subsection{Estimating response}
@@ -133,7 +133,55 @@ transform $r$ to $z=0.5 \ln(\frac{1+r}{1-r})$. Build an interval:$z \pm \frac{z_
 \end{enumerate}
 
 \subsection{Residual Analysis} 
+\begin{enumerate}
+\item Assumptions: $\epsilon_i$ are independent, $E(\epsilon_i) = 0, \; var(\epsilon_i) = \sigma^2, \; \epsilon_i \sim \mathcal{N} (0, \sigma^2)$
+\item Check Normality with QQ plot and histogram of the studentized residuals, which have mean 0, all residuals should lie within 3 std deviations.
+\item Check $E(\epsilon_i) = 0$ by plotting studentized residuals against fitted values. Points should have equal variance and zero mean, i.e. evenly distributed.
+\end{enumerate}
 
+\subsection{Polynomial Regression}
+$Y_i = \beta_0 + \beta_1x_i + \beta_2x^2_i + ... + \beta_p x^p_i\epsilon_i $, not all intermediate powers need be present.
+
+Higher-order terms are specified using the $I(\cdot) $ function in R.
+
+1. Test that the quadratic term is zero: $H_0 :\beta_2 =0.$
+
+2. If rejected, use  linear and quadratic terms in model.
+
+3. If not rejected, there is no evidence that the quadratic model gives significant improvement over the linear model.
+
+\subsection{Multiple Regression (2+ covariates)}
+$Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_k x_{ik} + \epsilon_i$
+
+The model is linear in the parameters $(\beta_i)$, not necessarily in the covariates $(x_i)$. Same assumptions are made about the residuals. 
+
+$\beta_j$ is the change in the mean of $Y_i$ for a 1 unit increase of $x_{ij}$ when holding all other variables constant.
+
+\begin{enumerate}
+\item $\hat{\sigma}^2 = (n - (K+1)) ^{-1} \sum (y_i -\hat{y}_i)^2 = SSE/(n-(K+1))$ where (K+1) is the number of coefficients $\beta_i$ in the model. 
+\item Can test each coefficient individually with same hypothesis as in simple regression. In which case, we test for e.g. $\beta_j$ after adjusting for all other variables.
+\item Confidence interval for $\beta_j$ : $\hat{\beta}_j \pm t_{n-(K+1), \alpha/2} \cdot \hat{\sigma}_{\hat{\beta}_j}$
+\item Global Fit
+
+$R^2_a = 1 - \frac{n-1}{n-(K+1)}\left(\frac{SSE}{S_{YY}}\right) = 1 - \frac{n-1}{n-K-1}(1-R^2) $
+
+e.g. if $R^2_a = 0.80$, then we say that the model explains 80\% of the variance in Y.
+
+\textbf{Overall hypothesis:}
+$$\mathcal{H}_0 : \beta_1 = \beta_2 = ... = 0 \quad \mathcal{H}_a : \text{ at least one } \beta_j \neq 0$$
+$F = \frac{(S_{YY} - SSE ) /K }{SSE/(n-(K+1)} = \frac{R^2/ K}{(1-R^2)/(n-(K+1))}$
+
+$\mathcal{H}_0$ is rejected for $F> \mathcal{F}_{\alpha, K, n-(K+1)}$.
+
+\end{enumerate}
 
 \end{multicols}
 \end{document}
+
+
+
+
+
+
+
+
