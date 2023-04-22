@@ -96,7 +96,7 @@ $$\mathcal{H}_0 : \beta_1 = 0 \quad vs \quad \mathcal{H}_a : \beta_1 \neq 0$$
 $T_{obs} = \frac{\hat{\beta}_1}{\hat{\sigma}_{\hat{\beta}_1}} = \frac{ \hat{\beta}_1}{\hat{\sigma}/\sqrt{S_{XX}}}$
 
 Compare $T_{obs}$ with the student distribution $t_{n-2, \alpha/2}$ to get RR.
-\item Could get same conclusion from p-value, which illustrates the probability that our results occurred under $\mathcal{H}_0$.
+\item Could get same conclusion from p-value, which illustrates the probability that our results occurred under $\mathcal{H}_0$. That is, the probability that $F>\mathcal{F}$ under $\mathcal{H}_0.$
 
 \item Confidence interval for $\beta_1$: $\hat{\beta}_1 \pm t_{n-2, \alpha/2 } \frac{\hat{\sigma}}{\sqrt{S_{XX}}}$.
 \end{enumerate}  
@@ -182,7 +182,8 @@ Y_i &= \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \beta_3 x_{i1} x_{i2} + \epsilo
 	&= \beta_0 + (\beta_1 +\beta_3x_{i2})x_{i1} + \beta_2 x_{i2}+ \epsilon_i 
 \end{align*}
 In the above model, a 1-unit increase in $x_2$ for a fixed $x_1$ corresponds to an estimated $\hat{\beta}_2 + \hat{\beta}_3 x_1$ increase in $Y_i$.
-1. Fit the model including the two covariates and the interaction.
+
+1) Fit the model including the covariates and interaction.
 
 2) Conduct a global F-test with $\mathcal{H}_0 : \beta_1 = \beta_2 = \beta_3 = 0$
 
@@ -190,8 +191,55 @@ In the above model, a 1-unit increase in $x_2$ for a fixed $x_1$ corresponds to 
 
 \subsection{Qualitative}
 Set $Z_i = 0 \; \forall i$ for reference group and $Z_i =\left\{ \begin{matrix} 1 &\text{if condition i} \\ 0 & \text{otherwise} \end{matrix} \right.$
-$$Y_i = \beta_0 + \beta_1 z_i + \beta_2z_2 + \epsilon_i$$
+$$Y_i = \beta_0 + \beta_1 z_1 + \beta_2z_2 + \epsilon_i$$
 Where $\hat{\beta}_0 = \mu_0$, $\hat{\beta}_1 = \mu_1 -\mu_0$, and $\hat{\beta}_2 = \mu_2- \mu_0$, and $\mathcal{H}_0 : \beta_1 = \beta_2 = 0 \iff \mathcal{H}_0 :\mu_2 = \mu_1 = \mu_0$, $\mathcal{H}_a:$ at least 1 $\beta_i\neq 0$
+
+\textbf{Qualitative and quantitative}:
+
+The model is $Y_i = \beta_0 + \beta_1z_i + \beta_2 x_i$. 
+
+1) $z_i = 0$: $Y_i = \beta_0 + \beta_2x_i$
+
+2) $z_i = 1$: $Y_i = \beta_0 + \beta_1 + \beta_2x_i$
+
+So the slope is the same, only y-intercept changes.
+
+Interaction: $Y_i = \beta_0 + \beta_1z_i + \beta_2 x_i + \beta_3 z_1 x_i$. Then, slopes vary:
+
+1) $z_i = 0$: $Y_i = \beta_0 + \beta_2x_i$
+
+2) $z_i = 1$: $Y_i = \beta_0 + \beta_1 + (\beta_2 + \beta_3)x_i$
+
+Where $\beta_1 + \beta_3 x_i$ is the difference in $Y$ between $z_i=1$ and $z_i = 0$. Should always test for existence of an interaction.
+If no evidence to reject $\mathcal{H}_0$ of no interaction, must re-fit model without interaction.
+If evidence of interaction, slopes are different and interpret the results accordingly.
+\subsection{Comparing Nested Models}
+$M_0$ and $M_1$ are nested models if one contains a subset of the other.
+$M_0 = \beta_0+...+ \beta_gx_g$, $M_1 = M_0+ \beta_{g+1}x_{g+1}+...+\beta_kx_k$
+$$\mathcal{H}_0: \beta_{g+1}x_{g+1} = ...=\beta_kx_k=0 \quad \mathcal{H}_a : \text{ at least 1 } \beta_i\neq 0$$
+Note: we always have $SSE_{M_0}\geq SSE_{M_1} $. 
+
+1) $SSE_{M_0}- SSE_{M_1} $ large $\implies$ $M_1$ explains more variance than just using $M_0$.
+
+2)$SSE_{M_0}- SSE_{M_1} $ small $\implies$ additional terms in $M_1$ don't contribute to model fit.
+
+To determine how "large" the difference is:
+
+$$F = \frac{(SSE_{M_0}- SSE_{M_1}) /(k-g)}{SSE_{M_1} / (n - (k+1))}$$
+We reject $\mathcal{H}_0$ if $F > \mathcal{F}(\alpha,k-g, n-(k+1))$ 
+
+\subsection{Multicollinearity} 
+When two covariates in a regression analysis are highly correlated with each other (their coefficient of correlation is high), the analysis is said to be subject to multicollinearity. The covariates “compete” for the explanatory power in the association with the response.
+
+\subsection{Multinomial Distribution}
+One qualitative variable $C$ can take $k$ possible values $\{c_1, ... ,c_k\}$. Let $X_i$ the \# of times $c_i$ occurs. The set of $X_i$ has a multinomial distribution.
+$$P(X_1 = n_1 , ... , X_k = n_k) = \frac{n!}{n_1!... n_k!} p_1^{n_1}...p_k^{n_k}$$ 
+where $n_1 + ... + n_k = n$. $E(X_i) = np_i$. 
+\subsubsection{Chi-square}
+$\mathcal{H}_0 : p_1 = p^*_1 ,..., p_k = p^*_k \quad \mathcal{H}_a : p_i\neq p^*_i \text{ for at least one } i$
+
+Given by Pearson's chi-square statistic : $$X^2_{obs} = \sum_{i=1}^k \frac{(n_i - np_i^*)^2}{np^*_i} = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}$$
+Where $O_i:=$observed and $E_i:=$expected. Distribution of $\chi^2$ under $\mathcal{H}_0$ is $\chi^2_{(k-1)}$, $(k-1):=$(deg. of freedom). Given $\alpha$, $RR = \{X^2_{obs}> \chi^2_{\alpha, (k-1)}\}$ and $p= Pr\{\chi^2_{(k-1)} > X^2_{obs} \} $. Every expected count must be $\geq 5$ for this test.
 
 \end{multicols}
 \end{document}
