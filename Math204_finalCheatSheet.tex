@@ -189,10 +189,9 @@ In the above model, a 1-unit increase in $x_2$ for a fixed $x_1$ corresponds to 
 3) If rejected, test for an interaction by using a Student t-test to test $\mathcal{H}_0 : \beta_3 = 0$. If rejected, stop. Otherwise, re-fit the model without the interaction.
 
 \subsection{Qualitative}
-Set $Z_i = 0$ for one result (reference group) and $Z_i = 1$ for the other. 
+Set $Z_i = 0 \; \forall i$ for reference group and $Z_i =\left\{ \begin{matrix} 1 &\text{if condition i} \\ 0 & \text{otherwise} \end{matrix} \right.$
 $$Y_i = \beta_0 + \beta_1 z_i + \beta_2z_2 + \epsilon_i$$
-Where $\hat{\beta}_0 = \bar{Y}_0$, $\hat{\beta}_1 = \bar{Y}_1 -\bar{Y}_0$, and $\hat{\beta}_2 = \bar{Y}_2- \bar{Y}_1$.
-The null hypothesis would be $\mathcal{H}_0 : \beta_1 = 0 \iff \mathcal{H}_0 :\mu_1 = \mu_0$
+Where $\hat{\beta}_0 = \mu_0$, $\hat{\beta}_1 = \mu_1 -\mu_0$, and $\hat{\beta}_2 = \mu_2- \mu_0$, and $\mathcal{H}_0 : \beta_1 = \beta_2 = 0 \iff \mathcal{H}_0 :\mu_2 = \mu_1 = \mu_0$, $\mathcal{H}_a:$ at least 1 $\beta_i\neq 0$
 
 \end{multicols}
 \end{document}
