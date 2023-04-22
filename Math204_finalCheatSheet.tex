@@ -169,11 +169,30 @@ e.g. if $R^2_a = 0.80$, then we say that the model explains 80\% of the variance
 
 \textbf{Overall hypothesis:}
 $$\mathcal{H}_0 : \beta_1 = \beta_2 = ... = 0 \quad \mathcal{H}_a : \text{ at least one } \beta_j \neq 0$$
-$F = \frac{(S_{YY} - SSE ) /K }{SSE/(n-(K+1)} = \frac{R^2/ K}{(1-R^2)/(n-(K+1))}$
+$F_{statistic} = \frac{(S_{YY} - SSE ) /K }{SSE/(n-(K+1)} = \frac{R^2/ K}{(1-R^2)/(n-(K+1))}$
 
 $\mathcal{H}_0$ is rejected for $F> \mathcal{F}_{\alpha, K, n-(K+1)}$.
 
 \end{enumerate}
+\subsection{Interaction}
+if an interaction is suspected between $X_1$ and $X_2$, we incorporate the interaction by setting
+\begin{align*}
+Y_i &= \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \beta_3 x_{i1} x_{i2} + \epsilon_i \\ 
+	&= \beta_0 + \beta_1x_{i1} +(\beta_2 + \beta_3x_{i1})x_{i2} + \epsilon_i \\
+	&= \beta_0 + (\beta_1 +\beta_3x_{i2})x_{i1} + \beta_2 x_{i2}+ \epsilon_i 
+\end{align*}
+In the above model, a 1-unit increase in $x_2$ for a fixed $x_1$ corresponds to an estimated $\hat{\beta}_2 + \hat{\beta}_3 x_1$ increase in $Y_i$.
+1. Fit the model including the two covariates and the interaction.
+
+2) Conduct a global F-test with $\mathcal{H}_0 : \beta_1 = \beta_2 = \beta_3 = 0$
+
+3) If rejected, test for an interaction by using a Student t-test to test $\mathcal{H}_0 : \beta_3 = 0$. If rejected, stop. Otherwise, re-fit the model without the interaction.
+
+\subsection{Qualitative}
+Set $Z_i = 0$ for one result (reference group) and $Z_i = 1$ for the other. 
+$$Y_i = \beta_0 + \beta_1 z_i + \beta_2z_2 + \epsilon_i$$
+Where $\hat{\beta}_0 = \bar{Y}_0$, $\hat{\beta}_1 = \bar{Y}_1 -\bar{Y}_0$, and $\hat{\beta}_2 = \bar{Y}_2- \bar{Y}_1$.
+The null hypothesis would be $\mathcal{H}_0 : \beta_1 = 0 \iff \mathcal{H}_0 :\mu_1 = \mu_0$
 
 \end{multicols}
 \end{document}

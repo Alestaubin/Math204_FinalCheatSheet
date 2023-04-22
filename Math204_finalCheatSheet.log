@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.10)  21 APR 2023 17:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.10)  21 APR 2023 18:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -447,16 +447,16 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (./Math204_finalCheatSheet.aux)
 Package rerunfilecheck Info: File `Math204_finalCheatSheet.out' has not changed
 .
-(rerunfilecheck)             Checksum: 5397A79BDCA57AB61DB26C80EF9252A6;1240.
+(rerunfilecheck)             Checksum: 453DD63AF8A1FA537CB1AF34E3143E3D;1442.
  ) 
 Here is how much of TeX's memory you used:
- 8808 strings out of 476093
- 139127 string characters out of 5791585
- 1901793 words of memory out of 5000000
- 29077 multiletter control sequences out of 15000+600000
+ 8812 strings out of 476093
+ 139175 string characters out of 5791585
+ 1911793 words of memory out of 5000000
+ 29079 multiletter control sequences out of 15000+600000
  516573 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,5n,77p,293b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,8n,77p,293b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
@@ -473,10 +473,10 @@ ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2
 022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/202
 2/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb>
-Output written on Math204_finalCheatSheet.pdf (1 page, 177459 bytes).
+Output written on Math204_finalCheatSheet.pdf (1 page, 180380 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
- 123 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 169 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
