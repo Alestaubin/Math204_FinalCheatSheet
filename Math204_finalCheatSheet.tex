@@ -1,4 +1,4 @@
-\documentclass[5pt,landscape]{article}
+\documentclass[8pt,landscape]{extarticle}
 \usepackage{multicol}
 \usepackage{calc}
 \usepackage{ifthen}
@@ -221,8 +221,8 @@ To determine how "large" the difference is:
 
 $$F = \frac{(SSE_{M_0}- SSE_{M_1}) /(k-g)}{SSE_{M_1} / (n - (k+1))}, \quad RR = \{F > \mathcal{F}(\alpha,k-g, n-(k+1)) \}$$
 
-\subsection{Multicollinearity} 
-When two covariates in a regression analysis are highly correlated with each other (their coefficient of correlation is high), the analysis is said to be subject to multicollinearity. The covariates “compete” for the explanatory power in the association with the response.
+\subsubsection{Multicollinearity} 
+When two covariates in a regression analysis are highly correlated with each other. The covariates “compete” for the explanatory power in the association with the response.
 
 \subsection{Multinomial Distribution}
 One qualitative variable $C$ can take $k$ possible values $\{c_1, ... ,c_k\}$. Let $X_i$ the \# of times $c_i$ occurs. The set of $X_i$ has a multinomial distribution.
@@ -241,11 +241,11 @@ $n_{1\bullet} +...+ n_{r\bullet} = n_{\bullet 1} + ... + n_{\bullet c}  = n$ (su
 We want to test :
 
 $\mathcal{H}_0$ : $X,Y$ independent \textit{vs} $\mathcal{H}_a$ : $X, Y$ not independent. The expected counts are given by $\hat{E}_{jk} = n \hat{p}_{j\bullet} \hat{p}_{\bullet k} = n_{j\bullet} n_{\bullet k} /n$, where $\hat{p}_{j\bullet} = n_{j\bullet} /n$, $\hat{p}_{\bullet k } = n_{\bullet k} /n$
-$$ X^2 = \sum_{j= 1}^r \sum_{k=1}^c \frac{(n_{jk} - (n_{j\bullet} n_{\bullet k} /n ))^2 }{ n_{j\bullet} n_{\bullet k} / n } =\sum_{j= 1}^r \sum_{k=1}^c \frac{(n_{jk} - \hat{E}_{jk})^2 }{\hat{E}_{jk}} $$
 
-Under $\mathcal{H}_0$: $X^2 \sim \chi^2_{(r-1)(c-1)} $, $RR = \{X^2 >  \chi^2_{\alpha, (r-1)(c-1)}\} $
 
-Caveats: must have expected cell count $\geq 5$ for all cells, observations must be mutually independent and identically distributed.
+$$ X^2 =\sum_{j= 1}^r \sum_{k=1}^c \frac{(n_{jk} - \hat{E}_{jk})^2 }{\hat{E}_{jk}}, \quad RR = \{X^2 >  \chi^2_{\alpha, (r-1)(c-1)}\} $$
+
+Must have expected cell count $\geq 5$ for all cells, observations must be mutually independent and identically distributed.
 
 \subsubsection{Fisher's exact test} 
 If expected cell count is not $\geq 5$ for all cells.
@@ -376,6 +376,14 @@ $$F =\frac{ SST /(K-1) }{ SSE / (n-K -B +1)} = \frac{MST}{MSE}, RR = \{ F > \mat
 
 Anova $F$-test (block) : same as above, but with the means within blocks. Replace SST with SSB, $(K-1)$ with $(B-1)$. SSB is the same as SST, but within blocks. 
 
+If $\mathcal{H}_0$ rejected, proceed with MC of means. 
+
+\subsubsection{2-way ANOVA}
+To explore effect of two factors A and B on a response variable. A: J levels, B: K levels. $R$ replications for each of the $J \times K$ combinations: total observations is $n = J \times K \times R$. Let $Y_{jkr}$ the response val. for factors $A$: lvl $j$, $B$: lvl k, replication $r$. That is, $r^{th}$ rep. within treat. $(j,k)$
+
+1) test interaction between $A$ \& $B$. If no interaction: use MC to compare pairs of treatments.
+
+2) else test for main effect of $A$ (resp. $B$). If evidence of main effect, use MC for pairs within $A$ (resp. $B$) only.
 
 
 
