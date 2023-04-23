@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.10)  22 APR 2023 21:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.10)  23 APR 2023 14:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -345,7 +345,7 @@ File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 )
 
 LaTeX Warning: Unused global option(s):
-    [8pt].
+    [5pt].
 
 (./Math204_finalCheatSheet.aux)
 \openout1 = `Math204_finalCheatSheet.aux'.
@@ -411,19 +411,19 @@ Package hyperref Info: Link coloring OFF on input line 50.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 83.
+(hyperref)                removing `math shift' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sigma' on input line 83.
+(hyperref)                removing `\sigma' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 83.
+(hyperref)                removing `superscript' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 83.
+(hyperref)                removing `math shift' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -441,44 +441,71 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 90.
 
+
+Overfull \hbox (18.38669pt too wide) in paragraph at lines 104--111
+[]  
+ []
+
+
+Overfull \hbox (29.8157pt too wide) detected at line 222
+\OML/cmm/m/it/8 F \OT1/cmr/m/n/8 = []\OML/cmm/m/it/8 ;  RR \OT1/cmr/m/n/8 = \OM
+S/cmsy/m/n/8 f\OML/cmm/m/it/8 F > \OMS/cmsy/m/n/8 F\OT1/cmr/m/n/8 (\OML/cmm/m/i
+t/8 ; k \OMS/cmsy/m/n/8 ^^@ \OML/cmm/m/it/8 g; n \OMS/cmsy/m/n/8 ^^@ \OT1/cmr/
+m/n/8 (\OML/cmm/m/it/8 k \OT1/cmr/m/n/8 + 1))\OMS/cmsy/m/n/8 g
+ []
+
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (42.43268pt too wide) in paragraph at lines 347--354
+[]  
+ []
+
+
+Overfull \hbox (15.39189pt too wide) in paragraph at lines 365--373
+[]  
+ []
+
+
+Overfull \hbox (29.22746pt too wide) detected at line 375
+\OML/cmm/m/it/8 F \OT1/cmr/m/n/8 = [] = []\OML/cmm/m/it/8 ; RR \OT1/cmr/m/n/8 =
+ \OMS/cmsy/m/n/8 f\OML/cmm/m/it/8 F > \OMS/cmsy/m/n/8 F[]g
+ []
+
 [2] (./Math204_finalCheatSheet.aux)
 Package rerunfilecheck Info: File `Math204_finalCheatSheet.out' has not changed
 .
-(rerunfilecheck)             Checksum: 60F2B06305557D7836F5274590CE95C7;3885.
+(rerunfilecheck)             Checksum: 0B0336ECF04AB654672B354F69C8E3BC;4556.
  ) 
 Here is how much of TeX's memory you used:
- 8847 strings out of 476093
- 139572 string characters out of 5791585
- 1921793 words of memory out of 5000000
- 29096 multiletter control sequences out of 15000+600000
- 517532 words of font info for 50 fonts, out of 8000000 for 9000
+ 8832 strings out of 476093
+ 139494 string characters out of 5791585
+ 1925793 words of memory out of 5000000
+ 29098 multiletter control sequences out of 15000+600000
+ 516927 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,10n,77p,366b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,11n,77p,558b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr
-/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr
-/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/l
-ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/
-texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
-022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/202
-2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2022/te
-xmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb>
-Output written on Math204_finalCheatSheet.pdf (2 pages, 225833 bytes).
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/
+local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
+cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local
+/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
+2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/20
+22/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2022/t
+exmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb>
+Output written on Math204_finalCheatSheet.pdf (2 pages, 220665 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 201 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 231 PDF objects out of 1000 (max. 8388607)
+ 193 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
 
