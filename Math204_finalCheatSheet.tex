@@ -241,6 +241,109 @@ $\mathcal{H}_0 : p_1 = p^*_1 ,..., p_k = p^*_k \quad \mathcal{H}_a : p_i\neq p^*
 Given by Pearson's chi-square statistic : $$X^2_{obs} = \sum_{i=1}^k \frac{(n_i - np_i^*)^2}{np^*_i} = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}$$
 Where $O_i:=$observed and $E_i:=$expected. Distribution of $\chi^2$ under $\mathcal{H}_0$ is $\chi^2_{(k-1)}$, $(k-1):=$(deg. of freedom). Given $\alpha$, $RR = \{X^2_{obs}> \chi^2_{\alpha, (k-1)}\}$ and $p= Pr\{\chi^2_{(k-1)} > X^2_{obs} \} $. Every expected count must be $\geq 5$ for this test.
 
+\subsubsection{Contingency tables}
+$n_{j \bullet} = n_{j1} + ... + n_{jc}$, $n_{\bullet k}=n_{1k}+...+n_{rk}$. 
+$n_{1\bullet} +...+ n_{r\bullet} = n_{\bullet 1} + ... + n_{\bullet c}  = n$ (sum of all entries). 
+
+We want to test :
+
+$\mathcal{H}_0$ : $X,Y$ independent \textit{vs} $\mathcal{H}_a$ : $X, Y$ not independent. The expected counts are given by $\hat{E}_{jk} = n \hat{p}_{j\bullet} \hat{p}_{\bullet k} = n_{j\bullet} n_{\bullet k} /n$, where $\hat{p}_{j\bullet} = n_{j\bullet} /n$, $\hat{p}_{\bullet k } = n_{\bullet k} /n$
+$$ X^2 = \sum_{j= 1}^r \sum_{k=1}^c \frac{(n_{jk} - (n_{j\bullet} n_{\bullet k} /n ))^2 }{ n_{j\bullet} n_{\bullet k} / n } =\sum_{j= 1}^r \sum_{k=1}^c \frac{(n_{jk} - \hat{E}_{jk})^2 }{\hat{E}_{jk}} $$
+
+Under $\mathcal{H}_0$: $X^2 \sim \chi^2_{(r-1)(c-1)} $, $RR = \{X^2 >  \chi^2_{\alpha, (r-1)(c-1)}\} $
+
+Caveats: must have expected cell count $\geq 5$ for all cells, observations must be mutually independent and identically distributed.
+
+\subsubsection{Fisher's exact test} 
+If expected cell count is not $\geq 5$ for all cells.
+\subsubsection{McNemar's test}
+Matched pairs experiments, e.g. 
+\begin{tabular}{c|ccc} 
+Response 1/2 & Yes & No & Total \\
+\hline Yes & $n_{11}$ & $n_{12}$ & $n_1 \bullet$ \\
+No & $n_{21}$ & $n_{22}$ & $n_{2 \bullet}$ \\
+\hline Total & $n_{\bullet 1}$ & $n_{\bullet 2}$ & $n$
+\end{tabular}
+
+Want to test whether the proportions are the same before and after, i.e. $\mathcal{H}_0: p_1 = p_2$, $\mathcal{H}_a: p_1 \neq p_2$.
+$$Q_M = \frac{ (n_{12} -n_{21} )^2}{n_{12} +n_{21} } , \quad \quad RR = \{ Q_M > \chi^2_{\alpha, 1}\} $$
+
+\subsection{Non-Parametric statistics}
+\subsubsection{Wilcoxon test}
+To test the hypothesis that the probability distributions of both pop. are equivalent $(D_0 = D_1)$.
+
+Conditions: independent samples, cts distributions.
+
+1) order together the observations from both samples
+
+2) assign a rank to each, if equality, take average of ranks.
+
+3) take sum of ranks of each group, let $T$ the sum of sample with smaller size.
+
+$\mathcal{H}_0: D_0 = D_1$, $\mathcal{H}_a: (T_U, T_L $ are table values),
+
+ 1) $D_1$ left of $D_2$: $RR=\{T\leq T_L\}$ if $T=T_1$, $\{T\geq T_U\}$ o.w. 
+ 
+ 2) $D_1$ right of $D_2$: $RR=\{T \geq T_U\}$ if $T=T_1$, $\{T\leq T_L\}$ o.w. 
+ 
+ 3) one or two.
+
+\subsubsection{Normal approx. of Wilcoxon}
+If $n_1, n_2 \geq 10$. $Z  = \frac{T_1-(n_1 (n_1 +n_2+1 ) /2)}{\sqrt{n_1 n_2 (n_1 + n_2 +1)/ 12}}$, where $T_1$ sum of ranks corresponding to $D_1$, $n_i$ sample size. Then, $Z\sim \mathcal{N}(0,1)$ and, letting $z_\alpha$ the value from normal table:
+
+(1) $RR = \{Z < -z_\alpha\}; p-value=Pr(Z < Z_{obs} )$
+
+(2) $RR = \{Z > z_\alpha\}; p-value=Pr(Z > Z_{obs} )$
+
+(3) $RR = \{|Z| > z_{\alpha/2}\}; p-value=2 \times Pr(Z > |Z_{obs}|)$
+
+\subsubsection{Wilcoxon's signed rank test (for paired data)}
+Let $X_1, ..., X_n$, $Y_1, ... , Y_n$ random samples of paired observations. $Diff_1 = X_1 - Y_1, ..., Diff_n = X_n -Y_n$
+
+1) order absolute values of differences, take out the zeros
+
+2) rank the differences, ties handled as usual
+
+3) let $T_+$, $T_-$ sum of ranks of positive and negative differences
+
+$\mathcal{H}_0: D_1= D_2$, $\mathcal{H}_a:$ same as before, with $T_0$ table value: 
+
+1) $RR = \{ T_+ \leq T_0\}$ 2) $RR = \{ T_- \leq T_0\}$ 
+
+3) $RR = \{ T \leq T_0 \}$ where $T=$ the smallest of $T_-$, $T_+$
+
+\subsubsection{Large sample Wilcoxon's signed rank test}
+If the number of pairs $n\geq 25$ (after excluding zeros), then $Z = \frac{T_+ -( n( n+1 ) /4 )}{\sqrt{n(n+1) (2n+1) /24}}$, $Z\sim \mathcal{N}(0,1)$, $RR$ same as 2 sections above.
+
+\subsubsection{Kruskal-Wallis test (CRD)}
+Rank-based non-parametric test to test difference in distribution among $\geq 2$ groups.
+$\mathcal{H}_0:$ the $k$ distributions are identical, $\mathcal{H}_a:$ at least one differs.
+
+1) Take ranks, as with \textit{Wilcoxon}.
+
+2) Let $\overline{R}_j$ be the rank average of group $j$, $\overline{R}$ overall avg.
+
+Under $\mathcal{H}_0$, we expect $\overline{R}_1 \approx ... \approx \overline{R}_k$. 
+
+$$KW = \frac{12}{ n(n+1) } \sum_{j=1}^k n_j(\overline{R}_j - \overline{R} )^2 \quad \quad RR=\{ KW>\chi^2_{\alpha, k-1} \}$$
+
+\subsubsection{Friedman test (RBD)}
+A matched set of $B$ blocks are formed with each consisting of $K$ experimental units. One experimental unit from each block is randomly assigned to each treatment.
+
+1) Rank the observations within blocks.
+
+2) $\overline{R}_j$ average of ranks within treatment j.
+
+Total average of ranks is $K(K+1)/2$, under $\mathcal{H}_0$, we expect $\overline{R}_1 \approx ... \approx \overline{R}_K$. 
+$$F_r = \frac{12 B} {K(K+1)} \sum^K_{j=1} (\overline{R}_j - \overline{R})^2 \quad \quad RR = \{ F_r > \chi^2_{\alpha, K-1}\}$$
+
+
+
+
+
+
+
+
 \end{multicols}
 \end{document}
 
