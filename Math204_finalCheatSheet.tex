@@ -64,20 +64,19 @@
 
 \subsection{Simple Linear Regression}
  $$
-        Y_i = \beta_0 + \beta_1 x_i + \epsilon_i
+        \hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i + \epsilon_i
  $$
- where
+ where $\hat{Y}_i$ are the fitted values, and
  $$
-\hat{\beta}_1=\frac{\sum_{i=1}^{n}(y_i-\bar{y})(x_i-\bar{x})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}=\frac{S_{xy}}{S_{xx}}
- $$
- $$
-        \hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}
+\hat{\beta}_1=\frac{\sum_{i=1}^{n}(y_i-\bar{y})(x_i-\bar{x})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}=\frac{S_{xy}}{S_{xx}},
+ \quad\hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}
  $$
  $\beta_1$ is the change in the mean of $Y_i$ for a 1 unit increase in $x_i$, $\beta_0$ is the mean when $x_i= 0 $ 
  
  $S_{XX} = \sum (x_i - \bar{x} )^2$, $S_{YY} =  \sum (y_i - \bar{y} )^2$, $S_{XY} = \sum (x_i - \bar{x} )(y_i - \bar{y} )$
  
  \subsection{Estimating $\sigma^2$}
+ The larger $\sigma^2$, the more dispersed the points will be around the line, i.e. less precise model.
 
  1) Standard deviation of $\hat{\beta}_1$: $\sigma_{\hat{\beta}_1} =\sqrt{var(\hat{\beta}_1)} = \sigma / \sqrt{S_{XX}}$
  
@@ -132,11 +131,13 @@ transform $r$ to $z=0.5 \ln(\frac{1+r}{1-r})$. Build an interval:$z \pm \frac{z_
 \end{enumerate}
 
 \subsection{Residual Analysis} 
+We estimate error terms $\epsilon_1, ... , \epsilon_n$ with residuals $\hat{\epsilon}_1,..., \hat{\epsilon}_n$, where $\hat{\epsilon}_i = y_i- \hat{y}_i$. It is recommended that we use the studentized residuals: $\hat{\epsilon}^{std}_i = \hat{\epsilon}_i / \hat{\sigma}$
+
 1) Assumptions: $\epsilon_i$ are independent, $E(\epsilon_i) = 0, \; var(\epsilon_i) = \sigma^2, \; \epsilon_i \sim \mathcal{N} (0, \sigma^2)$
 
-2) Check Normality with QQ plot and histogram of the studentized residuals, which have mean 0, all residuals should lie within 3 std deviations.
+2) Check Normality with QQ plot and histogram of the studentized residuals, which have mean 0, std dev 1, all residuals should lie within 3 std deviations.
 
-3) Check $E(\epsilon_i) = 0$ by plotting studentized residuals against fitted values. Points should have equal variance and zero mean, i.e. evenly distributed.
+3) Check $E(\epsilon_i) = 0$ and $var(\epsilon_i) = \sigma^2$ (homoscedasticity)  by plotting studentized residuals against fitted values. Points should have equal variance and zero mean, i.e. evenly distributed.
 
 \subsection{Polynomial Regression}
 $Y_i = \beta_0 + \beta_1x_i + \beta_2x^2_i + ... + \beta_p x^p_i\epsilon_i $, not all intermediate powers need be present.
@@ -164,9 +165,8 @@ $\beta_j$ is the change in the mean of $Y_i$ for a 1 unit increase of $x_{ij}$ w
 
 4) Global Fit: $R^2_a = 1 - \frac{n-1}{n-(K+1)}\left(\frac{SSE}{S_{YY}}\right) = 1 - \frac{n-1}{n-K-1}(1-R^2) $
 $\mathcal{H}_0 : \beta_1 = \beta_2 = ... = 0 \quad \mathcal{H}_a : \text{ at least one } \beta_j \neq 0$
-$F = \frac{(S_{YY} - SSE ) /K }{SSE/(n-(K+1)} = \frac{R^2/ K}{(1-R^2)/(n-(K+1))}$
-
-$\mathcal{H}_0$ is rejected for $F> \mathcal{F}_{\alpha, K, n-(K+1)}$.
+$$F = \frac{(S_{YY} - SSE ) /K }{SSE/(n-(K+1)} = \frac{R^2/ K}{(1-R^2)/(n-(K+1))} = \frac{MSR}{MSE}$$
+$$RR= \{F> \mathcal{F}_{\alpha, K, n-(K+1)} \}$$
 
 \subsection{Interaction}
 if an interaction is suspected between $X_1$ and $X_2$, we incorporate the interaction by setting
@@ -235,6 +235,20 @@ Given by Pearson's chi-square statistic : $$X^2_{obs} = \sum_{i=1}^k \frac{(n_i 
 Where $O_i:=$observed and $E_i:=$expected. Distribution of $\chi^2$ under $\mathcal{H}_0$ is $\chi^2_{(k-1)}$, $(k-1):=$(deg. of freedom). Given $\alpha$, $RR = \{X^2_{obs}> \chi^2_{\alpha, (k-1)}\}$ and $p= Pr\{\chi^2_{(k-1)} > X^2_{obs} \} $. Every expected count must be $\geq 5$ for this test.
 
 \subsubsection{Contingency tables}
+
+\begin{center}
+\begin{tabular}{c|cccc|c}
+$Y/X$ & 1 & 2 & $\hdots$ & c & Total \\ 
+\hline 
+1 & $n_{11}$ & $n_{12}$ & $\hdots$ & $n_{1c}$ & $n_{1 \bullet}$ \\ 
+2 & $n_{21}$ & $n_{22}$ & $\hdots$ & $n_{2c}$ & $n_{2 \bullet}$ \\ 
+$\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ \\
+r & $n_{r1}$ & $n_{r2}$ & $\hdots$ & $n_{rc}$ & $n_{r \bullet}$ \\
+\hline
+Total & $n_{\bullet 1}$ & $n_{\bullet 2}$ & $\hdots$ & $n_{ \bullet c}$ & $n$ 
+\end{tabular}
+\end{center}
+
 $n_{j \bullet} = n_{j1} + ... + n_{jc}$, $n_{\bullet k}=n_{1k}+...+n_{rk}$. 
 $n_{1\bullet} +...+ n_{r\bullet} = n_{\bullet 1} + ... + n_{\bullet c}  = n$ (sum of all entries). 
 
@@ -258,7 +272,7 @@ No & $n_{21}$ & $n_{22}$ & $n_{2 \bullet}$ \\
 \hline Total & $n_{\bullet 1}$ & $n_{\bullet 2}$ & $n$
 \end{tabular}
 
-Want to test whether the proportions are the same before and after, i.e. $\mathcal{H}_0: p_1 = p_2$, $\mathcal{H}_a: p_1 \neq p_2$.
+Want to test whether the proportions are the same in both responses, i.e. $\mathcal{H}_0: p_1 = p_2$, $\mathcal{H}_a: p_1 \neq p_2$.
 $$Q_M = \frac{ (n_{12} -n_{21} )^2}{n_{12} +n_{21} } , \quad \quad RR = \{ Q_M > \chi^2_{\alpha, 1}\} $$
 
 \subsection{Non-Parametric statistics}
@@ -279,7 +293,7 @@ $\mathcal{H}_0: D_0 = D_1$, $\mathcal{H}_a: (T_U, T_L $ are table values),
  
  2) $D_1$ right of $D_2$: $RR=\{T \geq T_U\}$ if $T=T_1$, $\{T\leq T_L\}$ o.w. 
  
- 3) one or two.
+ 3) $D_1$ either left or right of $D_2$: $RR =\{T \leq T_L \text{ or } T \geq T_U \}$.
 
 \subsubsection{Normal approx. of Wilcoxon}
 If $n_1, n_2 \geq 10$. $Z  = \frac{T_1-(n_1 (n_1 +n_2+1 ) /2)}{\sqrt{n_1 n_2 (n_1 + n_2 +1)/ 12}}$, where $T_1$ sum of ranks corresponding to $D_1$, $n_i$ sample size. Then, $Z\sim \mathcal{N}(0,1)$ and, letting $z_\alpha$ the value from normal table:
@@ -308,21 +322,26 @@ $\mathcal{H}_0: D_1= D_2$, $\mathcal{H}_a:$ same as before, with $T_0$ table val
 \subsubsection{Large sample Wilcoxon's signed rank test}
 If the number of pairs $n\geq 25$ (after excluding zeros), then $Z = \frac{T_+ -( n( n+1 ) /4 )}{\sqrt{n(n+1) (2n+1) /24}}$, $Z\sim \mathcal{N}(0,1)$, $RR$ same as 2 sections above.
 
-\subsubsection{Kruskal-Wallis test (assume CRD)}
+\subsubsection{Kruskal-Wallis test (CRD)}
 Def. (CRD): treatments are assigned randomly so that each experimental unit gets the same chance of receiving any one treatment.
-Rank-based non-parametric test to test difference in distribution among $\geq 2$ groups.
+
+KW: Rank-based non-parametric test to test difference in distribution among $\geq 2$ groups. Conditions: the K samples are random and independent, 5 or more measurements in each sample, the K probability distributions from which the samples are drawn are continuous.
 $\mathcal{H}_0:$ the $k$ distributions are identical, $\mathcal{H}_a:$ at least one differs.
 
-1) Take ranks, as with \textit{Wilcoxon}.
+1) Take ranks of observations, as if they belonged to the same group.
 
-2) Let $\overline{R}_j$ be the rank average of group $j$, $\overline{R}$ overall avg.
+2) Let $\overline{R}_j$ be the rank average of group $j$, $\overline{R} = (n+1)/2$ the overall avg.
 
 Under $\mathcal{H}_0$, we expect $\overline{R}_1 \approx ... \approx \overline{R}_k$. 
 
 $$KW = \frac{12}{ n(n+1) } \sum_{j=1}^k n_j(\overline{R}_j - \overline{R} )^2 \quad \quad RR=\{ KW>\chi^2_{\alpha, k-1} \}$$
 
-\subsubsection{Friedman test (assume RBD)}
-A matched set of $B$ blocks are formed with each consisting of $K$ experimental units. One experimental unit from each block is randomly assigned to each treatment. $B$ or $K$ $\geq 5$
+\subsubsection{Friedman test (RBD)}
+A matched set of $B$ blocks are formed with each consisting of $K$ experimental units. One experimental unit from each block is randomly assigned to each treatment.
+Special case: We have B subjects, each receives all K treatments.Each subject is a block and the experimental units are the repeat assessments on the same subject.
+Note: We should not give the subjects each treatment in the same order.
+
+Condition: $B$ or $K$ $\geq 5$
 
 1) Rank the observations within blocks.
 
@@ -343,26 +362,36 @@ Consider $n$ mutually indep. and indentically distributed pairs of variables $(X
 A confidence interval for $\rho$ is built the same way as earlier.
 
 \subsection{ANOVA}
+
 To test the equality of means in $K$ populations. $\mathcal{H}_0: \mu_1 = ... = \mu_K =\mu$, $\mathcal{H}_a:$ at least one differs. Assume homoscedasticity $(\sigma_1^2 =...=\sigma_k^2)$, normally distributed response. Let $\overline{Y}_k = 1/n_k(Y_{k1}+...+ Y_{kn_k}) = \hat{\mu}_k$, $\hat{\mu} = \overline{Y}$. $SSE = \sum_{k=1}^K \sum_{i=1}^{n_k} (Y_{ki} - \overline{Y}_k)^2 = \sum_{k=1}^K (n_k -1)S_k^2$, where $S_k^2$ the sample variance in group k,  $SST = \sum_{k=1}^K n_k (\hat{\mu}_k - \hat{\mu})^2$.
 $$F= \frac{MST}{MSE}= \frac{SST/(K-1)}{SSE/(n-K)}, \quad RR = \{ F> \mathcal{F}_{\alpha, K-1, n-K}\}$$
+
 \begin{tabular}{cccccc}
  Source & $\mathrm{df}$ & SS & MS & $F$ & $p$-value \\
- \hline Treat & $K-1$ & $\mathrm{SST}$ & $\mathrm{MST}$ & $\frac{\mathrm{MST}}{\mathrm{MSE}}$ & $P\left(\mathcal{F}_{K-1, n-K}>F_{o b s}\right)$ \\
+ \hline Treat & $K-1$ & $\mathrm{SST}$ & $\mathrm{MST}$ & $\frac{\mathrm{MST}}{\mathrm{MSE}}$ & $P\left(\mathcal{F}_{K-1, n-K}>F \right)$ \\
  Error & $n-K$ & SSE & $\mathrm{MSE}$ & & \\
 \hline Total & $n-1$ &$SS_{tot}$ &$=SSE$&$+SST$ 
 \end{tabular}
 
-\subsubsection{Comparing means}
+
+\subsection{Comparing means}
+\subsection{Student t-test for means}
+Estimates the true difference between two group means.
+$100(1-\alpha) \%$ CI for the mean difference:
+$$(\overline{Y}_i -\overline{Y}_j )\pm t_{\alpha/2,n_i + n_j -2} \sqrt{S^2_p/n_i +S^2_p/n_j} $$
+where $S^2_p = \frac{(n_i -1 ) S^2_i +(n_j-1) S^2_j }{ n_i +n_j}$ is the pooled variance.
+
+\subsubsection{Multiple comparisons}
 Want to compare differences between groups two at a time to see how different they are. Assume equal var, normality. Conf. int for diff. in means:
 $\left(\bar{Y}_i-\bar{Y}_j\right) \pm t_{\left(\alpha / 2,n-K \right)} \sqrt{MSE/ n_i+MSE / n_j}$
 
-Bonferroni: experiment-wise error $\alpha_E \implies$ comparison-wise error $\alpha_E/C$ where C is the \# of comparisons.
+Bonferroni: if we want an experiment-wise error $\alpha_E$, then should take comparison-wise error $\alpha_E/C$ where C is the \# of comparisons.
 
 Turkey's HSD: all groups of equal size, only pair-wise comp.
 
 Scheffe's: for linear comb. of means : $\mu_1 + \mu_2 -\mu_3$
 \subsubsection{ANOVA for RBD}
-\begin{tabular}{lcccc} 
+\begin{tabular}{lcccc}
 Source & df & SS & MS & $F$ \\
 \hline Treat & $K-1$ & SST & $\mathrm{MST}=\frac{\mathrm{SST}}{K-1}$ & $\frac{\mathrm{MST}}{\mathrm{MSE}}$ \\
 Blocks & $B-1$ & SSB & $\mathrm{MSB}=\frac{\mathrm{SSB}}{B-1}$ & $\frac{\mathrm{MSB}}{\mathrm{MSE}}$ \\
@@ -374,9 +403,7 @@ Total& $n-1$ & $\mathrm{SS}_{Tot}$
 Anova $F$-test (treat) : $\mathcal{H}_0: \mu_1 = ...= \mu_k$, $\mathcal{H}_a:$ $\geq 1$ differs. 
 $$F =\frac{ SST /(K-1) }{ SSE / (n-K -B +1)} = \frac{MST}{MSE}, RR = \{ F > \mathcal{F}_{\alpha, K-1, n-K-B+1}\} $$
 
-Anova $F$-test (block) : same as above, but with the means within blocks. Replace SST with SSB, $(K-1)$ with $(B-1)$. SSB is the same as SST, but within blocks. 
-
-If $\mathcal{H}_0$ rejected, proceed with MC of means. 
+Anova $F$-test (block) : same as above, but with the means within blocks. Replace SST with SSB, $(K-1)$ with $(B-1)$. SSB is the same as SST, but within blocks. If $\mathcal{H}_0$ rejected, proceed with MC of means. 
 
 \subsubsection{2-way ANOVA}
 To explore effect of two factors A and B on a response variable. A: J levels, B: K levels. $R$ replications for each of the $J \times K$ combinations: total observations is $n = J \times K \times R$. Let $Y_{jkr}$ the response val. for factors $A$: lvl $j$, $B$: lvl k, replication $r$. That is, $r^{th}$ rep. within treat. $(j,k)$
@@ -385,10 +412,33 @@ To explore effect of two factors A and B on a response variable. A: J levels, B:
 
 2) else test for main effect of $A$ (resp. $B$). If evidence of main effect, use MC for pairs within $A$ (resp. $B$) only.
 
+$SST = R \sum_{j=1}^J \sum_{k=1}^K (\overline{Y}_{jk \bullet} \overline{Y})^2$,
+$SSA = RK \sum_{j=1}^J (\overline{Y}_{j\bullet \bullet} -\overline{Y})^2$,
+$SSB = RJ \sum_{k=1}^K (\overline{Y}_{\bullet k \bullet} -\overline{Y})^2$, $SS(AB) = SST-SSA-SSB$, where $\overline{Y}$ the overall mean. The sample variance for $(j,k)$ is $S_{jk}^2 = \frac{1}{ R-1} \sum_{r=1}^R (Y_{jkr} -\overline{Y}_{jk\bullet} )^2$, $SSE = \sum_{j,k,r =1}^{J,K,R} (Y_{jkr} - \overline{Y}_{jk \bullet} )^2 =(R-1) \sum^{J,K}_{j,k=1} S_{jk}^2$
 
+\begin{tabular}{lcccc}
+Source & df & SS & MS & $F$ \\
+\hline
+A & $J-1$ & SSA & $\mathrm{MSA}=\frac{\mathrm{SSA}}{J-1}$ & $\frac{\mathrm{MSA}}{\mathrm{MSE}}$ \\
+B & $K-1$ & SSB & $\mathrm{MSB}=\frac{\mathrm{SSB}}{B-1}$ & $\frac{\mathrm{MSB}}{\mathrm{MSE}}$ \\
+AB & $(J-1)(K-1)$ & $SS(AB)$ & $\frac{SS(AB)}{(J-1)(K-1)}$ & $\frac{MS(AB)}{MSE}$ \\
+Error & $n-JK$ & SSE & $\mathrm{MSE}=\frac{\mathrm{SSE}}{n-JK}$& \\
+\hline
+Total& $n-1$ & $\mathrm{SS}_{Tot}$
 
+\end{tabular}
 
+\textbf{Interaction}
 
+$\mathcal{H}_0 :$ Factors A and B don't interact, $\mathcal{H}_a :$ they do.
+$$F = \frac{MS(AB)}{ MSE}, \quad \quad RR = \{ F > \mathcal{F}_{\alpha, (J-1)(K-1), n-JK} \} $$
+
+\textbf{Main effect}
+
+If $\mathcal{H}_0$ of no interaction is not rejected. $\mathcal{H}_0 :$ No difference among the J population mean responses due to factor A, 
+$\mathcal{H}_a$: At least two of the means differ
+
+$$F = \frac{SSA/(J-1) }{SSE/(n-JK)} = \frac{MSA}{MSE}, \quad RR = \{ F > \mathcal{F}_{\alpha ,J-1, n-JK} $$
 
 
 \end{multicols}
