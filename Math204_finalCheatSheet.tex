@@ -62,6 +62,9 @@
 \setlength{\multicolsep}{1pt}
 \setlength{\columnsep}{2pt}
 
+\begin{center}
+\Large\textsc{Finna Ace this Bih}
+\end{center}
 \subsection{Simple Linear Regression}
  $$
         \hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i + \epsilon_i
@@ -84,7 +87,7 @@
  
  3) $SSE = S_{YY} - \hat{\beta}_1 S_{XY}$
  
- 4) $\hat{\sigma}_{\hat{\beta}_1} = \hat{\sigma}/\sqrt{S_{XX}}$
+ 4) $\hat{\sigma}_{\hat{\beta}_1} = \hat{\sigma}/\sqrt{S_{XX}}$, and $S_{XX} = \left(\frac{\hat{\sigma}}{\hat{\sigma}_{\hat{\beta}_1}} \right)^2$
 
  \subsection{Inference about $\beta_1$}
 1) When the error terms are normal, $\hat{\beta}_1 \sim \mathcal{N}(\beta_1, \sigma^2/ S_{XX})$
@@ -112,6 +115,7 @@ Error & $n-2$ & $\mathrm{SSE}$ & $\mathrm{MSE}=\frac{\mathrm{SSE}}{n-2}$ & & \\
 lm summary table
 \begin{itemize}
 \item t-value (slope): $T_{obs} = \frac{ \hat{\beta}_1}{\hat{\sigma}_{\hat{\beta}_1}}$
+\item Std error (slope) : $\hat{\sigma}_{\hat{\beta}_1}$
 \item F-statistic : $T^2_{obs} $
 \item Residual std error: $\hat{\sigma}$
 \end{itemize}
@@ -155,7 +159,7 @@ $Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_k x_{ik} + \epsil
 
 The model is linear in the parameters $(\beta_i)$, not necessarily in the covariates $(x_i)$. Same assumptions are made about the residuals. 
 
-$\beta_j$ is the change in the mean of $Y_i$ for a 1 unit increase of $x_{ij}$ when holding all other variables constant.
+$\beta_j$ is the change in the mean of $Y_i$ for a 1 unit increase of $x_{ij}$ after adjusting for all other variables in the model.
 
 1) $\hat{\sigma}^2 = (n - (K+1)) ^{-1} \sum (y_i -\hat{y}_i)^2 = SSE/(n-(K+1))$ where (K+1) is the number of coefficients $\beta_i$ in the model. 
 
@@ -305,7 +309,7 @@ If $n_1, n_2 \geq 10$. $Z  = \frac{T_1-(n_1 (n_1 +n_2+1 ) /2)}{\sqrt{n_1 n_2 (n_
 (3) $RR = \{|Z| > z_{\alpha/2}\}; p-value=2 \times Pr(Z > |Z_{obs}|)$
 
 \subsubsection{Wilcoxon's signed rank test (for paired data)}
-Let $X_1, ..., X_n$, $Y_1, ... , Y_n$ random samples of paired observations. $Diff_1 = X_1 - Y_1, ..., Diff_n = X_n -Y_n$
+Let $X_1, ..., X_n$, $Y_1, ... , Y_n$ random samples of paired observations. $Diff_1 = X_1 - Y_1, ..., Diff_n = X_n -Y_n$. Don't need normality of the differences.
 
 1) order absolute values of differences, take out the zeros
 
@@ -319,6 +323,7 @@ $\mathcal{H}_0: D_1= D_2$, $\mathcal{H}_a:$ same as before, with $T_0$ table val
 
 3) $RR = \{ T \leq T_0 \}$ where $T=$ the smallest of $T_-$, $T_+$
 
+Note: in the table values, $n$ is the number of differences left after removal of the zeros. 
 \subsubsection{Large sample Wilcoxon's signed rank test}
 If the number of pairs $n\geq 25$ (after excluding zeros), then $Z = \frac{T_+ -( n( n+1 ) /4 )}{\sqrt{n(n+1) (2n+1) /24}}$, $Z\sim \mathcal{N}(0,1)$, $RR$ same as 2 sections above.
 
@@ -391,6 +396,7 @@ Turkey's HSD: all groups of equal size, only pair-wise comp.
 
 Scheffe's: for linear comb. of means : $\mu_1 + \mu_2 -\mu_3$
 \subsubsection{ANOVA for RBD}
+Note: $SST$ and $SS_{Tot}$ stay the same whether the blocks are included or not.
 \begin{tabular}{lcccc}
 Source & df & SS & MS & $F$ \\
 \hline Treat & $K-1$ & SST & $\mathrm{MST}=\frac{\mathrm{SST}}{K-1}$ & $\frac{\mathrm{MST}}{\mathrm{MSE}}$ \\
@@ -408,7 +414,7 @@ Anova $F$-test (block) : same as above, but with the means within blocks. Replac
 \subsubsection{2-way ANOVA}
 To explore effect of two factors A and B on a response variable. A: J levels, B: K levels. $R$ replications for each of the $J \times K$ combinations: total observations is $n = J \times K \times R$. Let $Y_{jkr}$ the response val. for factors $A$: lvl $j$, $B$: lvl k, replication $r$. That is, $r^{th}$ rep. within treat. $(j,k)$
 
-1) test interaction between $A$ \& $B$. If no interaction: use MC to compare pairs of treatments.
+1) test interaction between $A$ \& $B$. If $\mathcal{H}_0: $ no interaction is rejected: use MC to compare pairs of treatments.
 
 2) else test for main effect of $A$ (resp. $B$). If evidence of main effect, use MC for pairs within $A$ (resp. $B$) only.
 
@@ -438,7 +444,15 @@ $$F = \frac{MS(AB)}{ MSE}, \quad \quad RR = \{ F > \mathcal{F}_{\alpha, (J-1)(K-
 If $\mathcal{H}_0$ of no interaction is not rejected. $\mathcal{H}_0 :$ No difference among the J population mean responses due to factor A, 
 $\mathcal{H}_a$: At least two of the means differ
 
-$$F = \frac{SSA/(J-1) }{SSE/(n-JK)} = \frac{MSA}{MSE}, \quad RR = \{ F > \mathcal{F}_{\alpha ,J-1, n-JK} $$
+$$F = \frac{SSA/(J-1) }{SSE/(n-JK)} = \frac{MSA}{MSE}, \quad RR = \{ F > \mathcal{F}_{\alpha ,J-1, n-JK }\} $$
+
+\subsubsection{Conditions for all ANOVA tests}
+1) Random and independent samples of experimental units are
+associated with each treatment.
+
+2) The probability distribution of responses for each $JK$ factor-level combination (treatment) is approximately Normal.
+
+3) The $JK$ factor-level combination (treatment) probability distributions have equal variances.
 
 \subsection{Steps for HT on Final}
 1) Hypotheses clearly defined. Including explanation of the parameters involved. 
