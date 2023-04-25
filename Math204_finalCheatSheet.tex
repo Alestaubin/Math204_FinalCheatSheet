@@ -112,27 +112,32 @@ Error & $n-2$ & $\mathrm{SSE}$ & $\mathrm{MSE}=\frac{\mathrm{SSE}}{n-2}$ & & \\
 \end{tabular}
 
 
-lm summary table
-\begin{itemize}
-\item t-value (slope): $T_{obs} = \frac{ \hat{\beta}_1}{\hat{\sigma}_{\hat{\beta}_1}}$
-\item Std error (slope) : $\hat{\sigma}_{\hat{\beta}_1}$
-\item F-statistic : $T^2_{obs} $
-\item Residual std error: $\hat{\sigma}$
-\end{itemize}
+\textbf{lm summary table}
+1) t-value (slope): $T_{obs} = \frac{ \hat{\beta}_1}{\hat{\sigma}_{\hat{\beta}_1}}$, 
+
+2) Std error (slope) : $\hat{\sigma}_{\hat{\beta}_1}$, 
+
+3) F-statistic : $T^2_{obs} $, 
+
+4) Residual std error: $\hat{\sigma}$
+
 \subsection{Correlation}
-\begin{enumerate}
-\item corr(X,Y) = corr(Y,X)
-\item $r = S_{XY} /\sqrt{S_{XX}S_{YY}}$ is an estimator for $\rho$ (the true pop. correlation).
-\item $(1-\alpha)100\%$ confidence interval for $\rho$: 
+1) corr(X,Y) = corr(Y,X)
+
+2) (Pearson's correlation) $r = S_{XY} /\sqrt{S_{XX}S_{YY}}$ is an estimator for $\rho$ (the true pop. correlation). It measures the linear association between values.
+
+3) $(1-\alpha)100\%$ confidence interval for $\rho$: 
 transform $r$ to $z=0.5 \ln(\frac{1+r}{1-r})$. Build an interval:$z \pm \frac{z_{\alpha/2}}{\sqrt{n-3}}=(c_l, c_u)$, where $z_{\alpha/2}$ is from the standard Normal table. Then, the interval is
         $\left( \frac{e^{2c_L}-1}{e^{2c_L}+1},\frac{e^{2c_U}-1}{e^{2c_U}+1} \right)$
-\item Coefficient of determination: $R^2 = 1 - SSE/S_{YY}$
-\end{enumerate}
+        
+4) Coefficient of determination: $R^2 = 1 - SSE/S_{YY}$
+
 \subsection{Estimating response}
-\begin{enumerate}
-\item Mean response confidence interval: $\hat{y}_0 \pm t_{n-2, \alpha/2 } \hat{\sigma} \sqrt{ 1/n + (x_0 - \bar{x} )^2/ S_{XX}}$
-\item Individual value $Y_0$ confidence interval: $\hat{y}_0 \pm t_{n-2, \alpha/2} \hat{\sigma}\sqrt{ 1+1/n + (x_0 - \bar{x} )^2/ S_{XX}}$
-\end{enumerate}
+
+1) Mean response confidence interval: $\hat{y}_0 \pm t_{n-2, \alpha/2 } \hat{\sigma} \sqrt{ 1/n + (x_0 - \bar{x} )^2/ S_{XX}}$
+
+2) Individual value $Y_0$ confidence interval: $\hat{y}_0 \pm t_{n-2, \alpha/2} \hat{\sigma}\sqrt{ 1+1/n + (x_0 - \bar{x} )^2/ S_{XX}}$
+
 
 \subsection{Residual Analysis} 
 We estimate error terms $\epsilon_1, ... , \epsilon_n$ with residuals $\hat{\epsilon}_1,..., \hat{\epsilon}_n$, where $\hat{\epsilon}_i = y_i- \hat{y}_i$. It is recommended that we use the studentized residuals: $\hat{\epsilon}^{std}_i = \hat{\epsilon}_i / \hat{\sigma}$
@@ -263,7 +268,7 @@ $\mathcal{H}_0$ : $X,Y$ independent \textit{vs} $\mathcal{H}_a$ : $X, Y$ not ind
 
 $$ X^2 =\sum_{j= 1}^r \sum_{k=1}^c \frac{(n_{jk} - \hat{E}_{jk})^2 }{\hat{E}_{jk}}, \quad RR = \{X^2 >  \chi^2_{\alpha, (r-1)(c-1)}\} $$
 
-Must have expected cell count $\geq 5$ for all cells, observations must be mutually independent and identically distributed.
+\textbf{Conditions:} Must have expected cell count $\geq 5$ for all cells, counts represent a random sample from the population, observations be mutually independent and identically distributed.
 
 \subsubsection{Fisher's exact test} 
 If expected cell count is not $\geq 5$ for all cells.
@@ -283,7 +288,7 @@ $$Q_M = \frac{ (n_{12} -n_{21} )^2}{n_{12} +n_{21} } , \quad \quad RR = \{ Q_M >
 \subsubsection{Wilcoxon test}
 To test the hypothesis that the probability distributions of both pop. are equivalent $(D_0 = D_1)$.
 
-Conditions: independent samples, cts distributions.
+\textbf{Conditions:} independent samples, cts distributions.
 
 1) order together the observations from both samples
 
@@ -311,6 +316,8 @@ If $n_1, n_2 \geq 10$. $Z  = \frac{T_1-(n_1 (n_1 +n_2+1 ) /2)}{\sqrt{n_1 n_2 (n_
 \subsubsection{Wilcoxon's signed rank test (for paired data)}
 Let $X_1, ..., X_n$, $Y_1, ... , Y_n$ random samples of paired observations. $Diff_1 = X_1 - Y_1, ..., Diff_n = X_n -Y_n$. Don't need normality of the differences.
 
+\textbf{Conditions:} The sample of differences is randomly selected from the population of differences. The probability distribution from which the sample is drawn is continuous.
+
 1) order absolute values of differences, take out the zeros
 
 2) rank the differences, ties handled as usual
@@ -330,7 +337,10 @@ If the number of pairs $n\geq 25$ (after excluding zeros), then $Z = \frac{T_+ -
 \subsubsection{Kruskal-Wallis test (CRD)}
 Def. (CRD): treatments are assigned randomly so that each experimental unit gets the same chance of receiving any one treatment.
 
-KW: Rank-based non-parametric test to test difference in distribution among $\geq 2$ groups. Conditions: the K samples are random and independent, 5 or more measurements in each sample, the K probability distributions from which the samples are drawn are continuous.
+KW: Rank-based non-parametric test to test difference in distribution among $\geq 2$ groups. 
+
+\textbf{Conditions:} the K samples are random and independent, 5 or more measurements in each sample, the K probability distributions from which the samples are drawn are continuous.
+
 $\mathcal{H}_0:$ the $k$ distributions are identical, $\mathcal{H}_a:$ at least one differs.
 
 1) Take ranks of observations, as if they belonged to the same group.
@@ -346,7 +356,7 @@ A matched set of $B$ blocks are formed with each consisting of $K$ experimental 
 Special case: We have B subjects, each receives all K treatments.Each subject is a block and the experimental units are the repeat assessments on the same subject.
 Note: We should not give the subjects each treatment in the same order.
 
-Condition: $B$ or $K$ $\geq 5$
+\textbf{Conditions:} Treatments are randomly assigned to the experimental units within the blocks, measurements can be ranked within blocks, K prob dist. from which the samples are drawn are continuous, $B$ or $K$ $\geq 5$.
 
 1) Rank the observations within blocks.
 
@@ -356,7 +366,10 @@ Total average of ranks is $K(K+1)/2$, under $\mathcal{H}_0$, we expect $\overlin
 $$F_r = \frac{12 B} {K(K+1)} \sum^K_{j=1} (\overline{R}_j - \overline{R})^2 \quad \quad RR = \{ F_r > \chi^2_{\alpha, K-1}\}$$
 
 \subsubsection{Spearman's rank correlation coefficient}
+Measures the linear association between the ranks of the values.
 Consider $n$ mutually indep. and indentically distributed pairs of variables $(X_1, Y_1),...,(X_n, Y_n)$.
+
+\textbf{Condition:} Random samples from continuous prob dist.
 
 1) Rank the observations within $X : u_i$ and $Y: v_i$
 
@@ -368,7 +381,10 @@ A confidence interval for $\rho$ is built the same way as earlier.
 
 \subsection{ANOVA}
 
-To test the equality of means in $K$ populations. $\mathcal{H}_0: \mu_1 = ... = \mu_K =\mu$, $\mathcal{H}_a:$ at least one differs. Assume homoscedasticity $(\sigma_1^2 =...=\sigma_k^2)$, normally distributed response. Let $\overline{Y}_k = 1/n_k(Y_{k1}+...+ Y_{kn_k}) = \hat{\mu}_k$, $\hat{\mu} = \overline{Y}$. $SSE = \sum_{k=1}^K \sum_{i=1}^{n_k} (Y_{ki} - \overline{Y}_k)^2 = \sum_{k=1}^K (n_k -1)S_k^2$, where $S_k^2$ the sample variance in group k,  $SST = \sum_{k=1}^K n_k (\hat{\mu}_k - \hat{\mu})^2$.
+To test the equality of means in $K$ populations. $\mathcal{H}_0: \mu_1 = ... = \mu_K =\mu$, $\mathcal{H}_a:$ at least one differs. 
+\textbf{Conditions:} homoscedasticity $(\sigma_1^2 =...=\sigma_k^2)$, normally distributed response.
+
+Let $\overline{Y}_k = 1/n_k(Y_{k1}+...+ Y_{kn_k}) = \hat{\mu}_k$, $\hat{\mu} = \overline{Y}$. $SSE = \sum_{k=1}^K \sum_{i=1}^{n_k} (Y_{ki} - \overline{Y}_k)^2 = \sum_{k=1}^K (n_k -1)S_k^2$, where $S_k^2$ the sample variance in group k,  $SST = \sum_{k=1}^K n_k (\hat{\mu}_k - \hat{\mu})^2$.
 $$F= \frac{MST}{MSE}= \frac{SST/(K-1)}{SSE/(n-K)}, \quad RR = \{ F> \mathcal{F}_{\alpha, K-1, n-K}\}$$
 
 \begin{tabular}{cccccc}
@@ -396,7 +412,7 @@ Turkey's HSD: all groups of equal size, only pair-wise comp.
 
 Scheffe's: for linear comb. of means : $\mu_1 + \mu_2 -\mu_3$
 \subsubsection{ANOVA for RBD}
-Note: $SST$ and $SS_{Tot}$ stay the same whether the blocks are included or not.
+\textbf{Conditions:} B blocks are randomly selected, K treatments are randomly assigned to experimental units within blocks, prob dist. of responses for each BK block-treatment combination is approximately Normal, the BK block-treatment prob dist. have equal variances.\textbf{Note:} $SST$ and $SS_{Tot}$ stay the same whether the blocks are included or not.
 \begin{tabular}{lcccc}
 Source & df & SS & MS & $F$ \\
 \hline Treat & $K-1$ & SST & $\mathrm{MST}=\frac{\mathrm{SST}}{K-1}$ & $\frac{\mathrm{MST}}{\mathrm{MSE}}$ \\
@@ -446,40 +462,27 @@ $\mathcal{H}_a$: At least two of the means differ
 
 $$F = \frac{SSA/(J-1) }{SSE/(n-JK)} = \frac{MSA}{MSE}, \quad RR = \{ F > \mathcal{F}_{\alpha ,J-1, n-JK }\} $$
 
-\subsubsection{Conditions for all ANOVA tests}
-1) Random and independent samples of experimental units are
-associated with each treatment.
-
-2) The probability distribution of responses for each $JK$ factor-level combination (treatment) is approximately Normal.
-
-3) The $JK$ factor-level combination (treatment) probability distributions have equal variances.
+\textbf{Conditions:} Random and independent samples of experimental units are associated with each treatment, prob dist. of responses for each $JK$ treatment is approximately Normal, $JK$ factor-level combination (treatment) probability distributions have equal variances.
 
 \subsection{Steps for HT on Final}
 1) Hypotheses clearly defined. Including explanation of the parameters involved. 
 
 2) Observed test statistics: 
 
-If not provided in an output: Show the complete work used to get the value.
+If not provided in an output: Show complete work used to get the value.
 
 If provided in an output: only write the number E.g. $F_{obs}=...$
 
 3) If no p-value is provided: Compute a Rejection Region.
-
-Write it clearly as a region. Clearly specify the alpha, df, etc. and the final table value.
+Write it as a region, specify the alpha, df, etc. and the final table value.
 
 If a p-value is provided in a output: only write the p-value.
 
-4) Decision: say whether or not you reject Ho, and mention the alpha.
+4) Decision: say whether or not you reject Ho, and mention the alpha, justify the decision:
 
-Justify the decision:
+If the decision is taken from a computed RR, then say, E.g. Since $F_{obs}=14.3 > 4.46$ then ...
 
-If the decision is taken from a computed RR, then say it:
-
-E.g. Since $F_{obs}=14.3 > 4.46$ then ...
-
-If a p-value is provided from an output, then say it:
-
-E.g. Since $p-value=...>\alpha$ then ... 
+If a p-value is provided from an output, then say, E.g. Since $p-value=...>\alpha$ then ... 
 
 5) Conclusion. 
 
